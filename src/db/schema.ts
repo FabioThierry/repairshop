@@ -9,7 +9,7 @@ import {
 } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
-export const constumers = pgTable("costumers", {
+export const customers = pgTable("costumers", {
   id: serial("id").primaryKey(),
   firstName: varchar("first_name").notNull(),
   lastName: varchar("last_name").notNull(),
@@ -30,9 +30,9 @@ export const constumers = pgTable("costumers", {
 });
 export const tickets = pgTable("tickets", {
   id: serial("id").primaryKey(),
-  costumerId: integer("costumer_id")
+  customerId: integer("costumer_id")
     .notNull()
-    .references(() => constumers.id),
+    .references(() => customers.id),
   title: varchar("title").notNull(),
   description: text("description"),
   completed: boolean("completed").notNull().default(false),
@@ -45,13 +45,13 @@ export const tickets = pgTable("tickets", {
 });
 
 // Relations
-export const costumersRelations = relations(constumers, ({ many }) => ({
+export const costumersRelations = relations(customers, ({ many }) => ({
   tickets: many(tickets),
 }));
 
 export const ticketsRelations = relations(tickets, ({ one }) => ({
-  costumer: one(constumers, {
-    fields: [tickets.costumerId],
-    references: [constumers.id],
+  costumer: one(customers, {
+    fields: [tickets.customerId],
+    references: [customers.id],
   }),
 }));
