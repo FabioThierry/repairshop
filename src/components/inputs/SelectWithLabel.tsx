@@ -19,7 +19,7 @@ import {
 
 type DataObj = {
   id: string;
-  name: string;
+  description: string;
 };
 
 type Props<S> = {
@@ -60,7 +60,7 @@ export function SelectWithLabel<S>({
             <SelectContent>
               {data.map((item) => (
                 <SelectItem key={`${nameInSchema}_${item.id}`} value={item.id}>
-                  {item.name}
+                  {item.description}
                 </SelectItem>
               ))}
             </SelectContent>

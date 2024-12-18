@@ -1,114 +1,114 @@
 export const StatesArray = [
   {
     id: "AC",
-    name: "Acre",
+    description: "Acre",
   },
   {
     id: "AL",
-    name: "Alagoas",
+    description: "Alagoas",
   },
   {
     id: "AP",
-    name: "Amapá",
+    description: "Amapá",
   },
   {
     id: "AM",
-    name: "Amazonas",
+    description: "Amazonas",
   },
   {
     id: "BA",
-    name: "Bahia",
+    description: "Bahia",
   },
   {
     id: "CE",
-    name: "Ceará",
+    description: "Ceará",
   },
   {
     id: "DF",
-    name: "Distrito Federal",
+    description: "Distrito Federal",
   },
   {
     id: "ES",
-    name: "Espírito Santo",
+    description: "Espírito Santo",
   },
   {
     id: "GO",
-    name: "Goiás",
+    description: "Goiás",
   },
   {
     id: "MA",
-    name: "Maranhão",
+    description: "Maranhão",
   },
   {
     id: "MT",
-    name: "Mato Grosso",
+    description: "Mato Grosso",
   },
   {
     id: "MS",
-    name: "Mato Grosso do Sul",
+    description: "Mato Grosso do Sul",
   },
   {
     id: "MG",
-    name: "Minas Gerais",
+    description: "Minas Gerais",
   },
   {
     id: "PA",
-    name: "Pará",
+    description: "Pará",
   },
   {
     id: "PB",
-    name: "Paraíba",
+    description: "Paraíba",
   },
   {
     id: "PR",
-    name: "Paraná",
+    description: "Paraná",
   },
   {
     id: "PE",
-    name: "Pernambuco",
+    description: "Pernambuco",
   },
   {
     id: "PI",
-    name: "Piauí",
+    description: "Piauí",
   },
   {
     id: "RJ",
-    name: "Rio de Janeiro",
+    description: "Rio de Janeiro",
   },
   {
     id: "RN",
-    name: "Rio Grande do Norte",
+    description: "Rio Grande do Norte",
   },
   {
     id: "RS",
-    name: "Rio Grande do Sul",
+    description: "Rio Grande do Sul",
   },
   {
     id: "RO",
-    name: "Rondônia",
+    description: "Rondônia",
   },
   {
     id: "RR",
-    name: "Roraima",
+    description: "Roraima",
   },
   {
     id: "SC",
-    name: "Santa Catarina",
+    description: "Santa Catarina",
   },
   {
     id: "SP",
-    name: "São Paulo",
+    description: "São Paulo",
   },
   {
     id: "SE",
-    name: "Sergipe",
+    description: "Sergipe",
   },
   {
     id: "TO",
-    name: "Tocantins",
+    description: "Tocantins",
   },
   {
     id: "EX",
-    name: "Estrangeiro",
+    description: "Estrangeiro",
   },
 ];
