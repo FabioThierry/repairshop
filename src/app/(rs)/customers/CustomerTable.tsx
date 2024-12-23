@@ -2,20 +2,8 @@
 
 import type { SelectCustomerSchemaType } from "@/zod-schemas/customers";
 
-import {
-  createColumnHelper,
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 import { useRouter } from "next/navigation";
 
@@ -25,28 +13,21 @@ type Props = {
 
 export default function CustomerTable({ data }: Props) {
   const router = useRouter();
-  const columnHeaderArray: Array<keyof SelectCustomerSchemaType> = [
-    "firstName",
-    "lastName",
-    "email",
-    "phone",
-    "city",
-    "zip",
-  ];
+  const columnHeaderArray: Array<keyof SelectCustomerSchemaType> = ["firstName", "lastName", "email", "phone", "city", "zip"];
 
   const columnHelper = createColumnHelper<SelectCustomerSchemaType>();
 
   const columns = columnHeaderArray.map((columnName) => {
     return columnHelper.accessor(columnName, {
       id: columnName,
-      header: columnName[0].toUpperCase() + columnName.slice(1),
+      header: columnName[0].toUpperCase() + columnName.slice(1)
     });
   });
 
   const table = useReactTable({
     data,
     columns,
-    getCoreRowModel: getCoreRowModel(),
+    getCoreRowModel: getCoreRowModel()
   });
 
   return (
@@ -57,14 +38,7 @@ export default function CustomerTable({ data }: Props) {
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <TableHead key={header.id} className="bg-secondary">
-                  <div>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </div>
+                  <div>{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}</div>
                 </TableHead>
               ))}
             </TableRow>
@@ -75,9 +49,7 @@ export default function CustomerTable({ data }: Props) {
             <TableRow
               key={row.id}
               className="cursor-pointer hover:bg-border/25 dark:hover:bg-ring/40"
-              onClick={() =>
-                router.push(`/customers/form?customerId=${row.original.id}`)
-              }
+              onClick={() => router.push(`/customers/form?customerId=${row.original.id}`)}
             >
               {row.getVisibleCells().map((cell) => (
                 <TableCell key={cell.id} className="border">

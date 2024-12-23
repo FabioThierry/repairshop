@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 export const metadata = {
-  title: "Not Found",
+  title: "Not Found"
 };
 
 export default function NotFound() {

@@ -25,11 +25,5 @@ export function DebouncedInput({
     return () => clearTimeout(timeout);
   }, [value, debounce]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return (
-    <Input
-      {...props}
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-    />
-  );
+  return <Input {...props} value={value} onChange={(e) => setValue(e.target.value)} />;
 }

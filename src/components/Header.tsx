@@ -13,14 +13,8 @@ export function Header() {
       <div className="flex h-8 items-center justify-between w-full">
         <div className="flex items-center gap-2">
           <NavButton href="/home" icon={HomeIcon} label="Home" />
-          <Link
-            href="/home"
-            className="flex justify-center items-center gap-2 ml-0"
-            title="Home"
-          >
-            <h1 className="hidden sm:block text-xl font-bold m-0 mt-1">
-              Computer Repair Shop
-            </h1>
+          <Link href="/home" className="flex justify-center items-center gap-2 ml-0" title="Home">
+            <h1 className="hidden sm:block text-xl font-bold m-0 mt-1">Computer Repair Shop</h1>
           </Link>
         </div>
         <div className="flex items-center">
@@ -31,19 +25,12 @@ export function Header() {
             label="Customers Menu"
             choices={[
               { title: "Search Costumers", href: "/customers" },
-              { title: "New Costumer", href: "/customers/form" },
+              { title: "New Costumer", href: "/customers/form" }
             ]}
           />
 
           <ModeToggle />
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="LogOut"
-            title="LogOut"
-            className="rouded-full"
-            asChild
-          >
+          <Button variant="ghost" size="icon" aria-label="LogOut" title="LogOut" className="rouded-full" asChild>
             <LogoutLink>
               <LogOut />
             </LogoutLink>

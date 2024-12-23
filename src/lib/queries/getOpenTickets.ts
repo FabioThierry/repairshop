@@ -12,7 +12,7 @@ export async function getOpenTickets() {
       lastName: customers.lastName,
       email: customers.email,
       tech: tickets.tech,
-      completed: tickets.completed,
+      completed: tickets.completed
     })
     .from(tickets)
     .leftJoin(customers, eq(tickets.customerId, customers.id))

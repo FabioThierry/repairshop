@@ -5,7 +5,7 @@ import * as Sentry from "@sentry/nextjs";
 export const actionClient = createSafeActionClient({
   defineMetadataSchema() {
     return z.object({
-      actionName: z.string(),
+      actionName: z.string()
     });
   },
   handleServerError(e, utils) {
@@ -21,5 +21,5 @@ export const actionClient = createSafeActionClient({
       return "Database Error: Your data did not save. Support will be notified.";
     }
     return e.message;
-  },
+  }
 });

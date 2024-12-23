@@ -3,20 +3,12 @@ import { BackButton } from "@/components/BackButton";
 import * as Sentry from "@sentry/nextjs";
 import CustomerForm from "@/app/(rs)/customers/form/CustomerForm";
 
-export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | undefined }>;
-}) {
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) {
   const { customerId } = await searchParams;
   if (!customerId) return { title: "New Costumer" };
   return { title: `Edit Costumer ${customerId}` };
 }
-export default async function CustomerFormPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | undefined }>;
-}) {
+export default async function CustomerFormPage({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) {
   try {
     const { customerId } = await searchParams;
 
@@ -25,9 +17,7 @@ export default async function CustomerFormPage({
       if (!customer) {
         return (
           <>
-            <h2 className="text-2xl mb-2">
-              Customer ID #{customerId} Not Found
-            </h2>
+            <h2 className="text-2xl mb-2">Customer ID #{customerId} Not Found</h2>
             <BackButton title="Go Back" variant="default" />
           </>
         );

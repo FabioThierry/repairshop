@@ -2,13 +2,7 @@
 
 import { useFormContext } from "react-hook-form";
 
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
 import { TextareaHTMLAttributes } from "react";
 
@@ -18,12 +12,7 @@ type Props<S> = {
   className?: string;
 } & TextareaHTMLAttributes<HTMLTextAreaElement>;
 
-export function TextAreaWithLabel<S>({
-  fieldTitle,
-  nameInSchema,
-  className,
-  ...props
-}: Props<S>) {
+export function TextAreaWithLabel<S>({ fieldTitle, nameInSchema, className, ...props }: Props<S>) {
   const form = useFormContext();
 
   return (

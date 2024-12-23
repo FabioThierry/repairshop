@@ -12,7 +12,7 @@ export async function getTicketSearchResults(searchText: string) {
       lastName: customers.lastName,
       email: customers.email,
       tech: tickets.tech,
-      completed: tickets.completed,
+      completed: tickets.completed
     })
     .from(tickets)
     .leftJoin(customers, eq(tickets.customerId, customers.id))
@@ -24,15 +24,11 @@ export async function getTicketSearchResults(searchText: string) {
         ilike(customers.phone, `%${searchText}%`),
         ilike(customers.city, `%${searchText}%`),
         ilike(customers.zip, `%${searchText}%`),
-        sql`lower(concat(${customers.firstName}, ' ', ${
-          customers.lastName
-        })) LIKE ${`%${searchText.toLowerCase().replace(" ", "%")}%`}`
+        sql`lower(concat(${customers.firstName}, ' ', ${customers.lastName})) LIKE ${`%${searchText.toLowerCase().replace(" ", "%")}%`}`
       )
     )
     .orderBy(asc(tickets.createdAt));
   return results;
 }
 
-export type TicketSearchResultsType = Awaited<
-  ReturnType<typeof getTicketSearchResults>
->;
+export type TicketSearchResultsType = Awaited<ReturnType<typeof getTicketSearchResults>>;

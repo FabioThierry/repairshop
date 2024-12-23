@@ -11,14 +11,7 @@ type Props = {
 
 export function NavButton({ href, icon: Icon, label }: Props) {
   return (
-    <Button
-      variant={"ghost"}
-      size={"icon"}
-      aria-label={label}
-      title={label}
-      className="rounded-full"
-      asChild
-    >
+    <Button variant={"ghost"} size={"icon"} aria-label={label} title={label} className="rounded-full" asChild>
       {href ? (
         <Link href={href}>
           <Icon />

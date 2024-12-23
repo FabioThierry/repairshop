@@ -2,13 +2,7 @@
 
 import { useFormContext } from "react-hook-form";
 
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { InputHTMLAttributes } from "react";
 
@@ -18,12 +12,7 @@ type Props<S> = {
   className?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export function InputWithLabel<S>({
-  fieldTitle,
-  nameInSchema,
-  className,
-  ...props
-}: Props<S>) {
+export function InputWithLabel<S>({ fieldTitle, nameInSchema, className, ...props }: Props<S>) {
   const form = useFormContext();
 
   return (

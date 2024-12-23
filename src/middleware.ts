@@ -7,12 +7,10 @@ export default withAuth(
     // console.log("req", request);
   },
   {
-    isReturnToCurrentPage: true,
+    isReturnToCurrentPage: true
   }
 );
 
 export const config = {
-  matcher: [
-    "/((?!api|_next_static|_next/image|auth|favicon.ico|robots.txt|images|login|$).*)",
-  ],
+  matcher: ["/((?!api|_next_static|_next/image|auth|favicon.ico|robots.txt|images|login|$).*)"]
 };

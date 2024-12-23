@@ -4,25 +4,17 @@ import { getTicketSearchResults } from "@/lib/queries/getTicketSearchResults";
 import TicketTable from "@/app/(rs)/tickets/TicketTable";
 
 export const metadata = {
-  title: "Tickets Search",
+  title: "Tickets Search"
 };
 
-export default async function Tickets({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | undefined }>;
-}) {
+export default async function Tickets({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) {
   const { searchText } = await searchParams;
   if (!searchText) {
     const results = await getOpenTickets();
     return (
       <>
         <TicketSearch />
-        {results.length ? (
-          <TicketTable data={results} />
-        ) : (
-          <p className="mt-4"> No Results Found</p>
-        )}
+        {results.length ? <TicketTable data={results} /> : <p className="mt-4"> No Results Found</p>}
       </>
     );
   }
@@ -31,11 +23,7 @@ export default async function Tickets({
   return (
     <>
       <TicketSearch />
-      {results.length ? (
-        <TicketTable data={results} />
-      ) : (
-        <p className="mt-4"> No Results Found</p>
-      )}
+      {results.length ? <TicketTable data={results} /> : <p className="mt-4"> No Results Found</p>}
     </>
   );
 }

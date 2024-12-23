@@ -2,13 +2,7 @@
 
 import { useFormContext } from "react-hook-form";
 
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 import { Checkbox } from "@/components/ui/checkbox";
 
@@ -19,12 +13,7 @@ type Props<S> = {
   disabled?: boolean;
 };
 
-export function CheckboxWithLabel<S>({
-  fieldTitle,
-  nameInSchema,
-  message,
-  disabled = false,
-}: Props<S>) {
+export function CheckboxWithLabel<S>({ fieldTitle, nameInSchema, message, disabled = false }: Props<S>) {
   const form = useFormContext();
 
   return (
@@ -38,13 +27,7 @@ export function CheckboxWithLabel<S>({
           </FormLabel>
           <div className="flex items-center gap-2">
             <FormControl>
-              <Checkbox
-                id={nameInSchema}
-                {...field}
-                checked={field.value}
-                onCheckedChange={field.onChange}
-                disabled={disabled}
-              />
+              <Checkbox id={nameInSchema} {...field} checked={field.value} onCheckedChange={field.onChange} disabled={disabled} />
             </FormControl>
           </div>
           <FormMessage />
