@@ -20,7 +20,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { CircleCheckIcon, CircleXIcon, ArrowUpDown, ArrowDown, ArrowUp } from "lucide-react";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { usePolling } from "@/hooks/usePolling";
 import { Button } from "@/components/ui/button";
 import Filter from "@/components/react-table/Filter";
@@ -33,11 +33,8 @@ type RowType = TicketSearchResultsType[0];
 
 export default function TicketTable({ data }: Props) {
   const router = useRouter();
-
   const searchParams = useSearchParams();
-
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-
   const [sorting, setSorting] = useState<SortingState>([
     {
       id: "ticketDate",
@@ -45,8 +42,11 @@ export default function TicketTable({ data }: Props) {
     }
   ]);
 
+  usePolling(searchParams.get("searchText"), 300000);
+
   const columnHeaderArray: Array<keyof RowType> = ["ticketDate", "title", "tech", "firstName", "lastName", "email", "completed"];
-  usePolling(searchParams.get("searchText"), 10000);
+
+  const columnWidths = { completed: 150, ticketDate: 150, title: 250, tech: 225, email: 225 };
 
   const pageIndex = useMemo(() => {
     const page = searchParams.get("page");
@@ -73,6 +73,7 @@ export default function TicketTable({ data }: Props) {
       },
       {
         id: columnName,
+        size: columnWidths[columnName as keyof typeof columnWidths] ?? undefined,
         header: ({ column }) => {
           return (
             <Button
@@ -122,6 +123,17 @@ export default function TicketTable({ data }: Props) {
     getSortedRowModel: getSortedRowModel()
   });
 
+  useEffect(() => {
+    const currentPageIndex = table.getState().pagination.pageIndex + 1;
+    const pageCount = table.getPageCount();
+
+    if (pageCount <= currentPageIndex && currentPageIndex > 0) {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("page", "1");
+      router.replace(`?${params.toString()}`, { scroll: false });
+    }
+  }, [table.getState().columnFilters]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <div className="mt-6 flex flex-col gap-4">
       <div className="rounded-lg overflow-hidden border border-border">
@@ -130,11 +142,14 @@ export default function TicketTable({ data }: Props) {
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} className="bg-secondary p-1">
+                  <TableHead key={header.id} className="bg-secondary p-1 " style={{ width: header.getSize() }}>
                     <div>{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}</div>
                     {header.column.getCanFilter() ? (
                       <div className="grid place-content-center">
-                        <Filter column={header.column} />
+                        <Filter
+                          column={header.column}
+                          filteredRows={table.getFilteredRowModel().rows.map((row) => row.getValue(header.column.id))}
+                        />
                       </div>
                     ) : null}
                   </TableHead>
@@ -162,7 +177,7 @@ export default function TicketTable({ data }: Props) {
       <div className="flex justify-between items-center gap-1 flex-wrap">
         <div>
           <p className="whitespace-nowrap font-bold">
-            {`Page ${table.getState().pagination.pageIndex + 1} of ${table.getPageCount()}`} &nbsp;&nbsp;
+            {`Page ${table.getState().pagination.pageIndex + 1} of ${Math.max(1, table.getPageCount())}`} &nbsp;&nbsp;
             {`[${table.getFilteredRowModel().rows.length} ${table.getFilteredRowModel().rows.length !== 1 ? "total results" : "results"}]`}
           </p>
         </div>
